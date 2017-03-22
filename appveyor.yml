@@ -9,5 +9,8 @@ skip_commits:
 build: off
 
 #Kick off the CI/CD pipeline
+before_test: 
+ - ps : install-module invokebuild
+ - ps : import-module invokebuild
 test_script:
-  - ps: invoke-build
+  - ps: . .\main.build.ps1
