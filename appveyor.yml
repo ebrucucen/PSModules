@@ -1,16 +1,12 @@
-# Allow WMF5 (i.e. PowerShellGallery functionality)
-os: WMF 5
-
-# Skip on updates to the readme.
-# We can force this by adding [skip ci] or [ci skip] anywhere in commit message 
-skip_commits:
-  message: /updated (readme|doc).*|update (readme|doc).*s/
 
 build: off
 
 #Kick off the CI/CD pipeline
 before_test: 
- - ps : install-module invokebuild
- - ps : import-module invokebuild
+ - echo "started"
+ - ps: install-module invokebuild
+ - echo "installed"
+ - ps: import-module invokebuild
+ - echo "imported"
 test_script:
   - ps: . .\main.build.ps1
