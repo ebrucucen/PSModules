@@ -1,44 +1,6 @@
-
+# .ExternalHelp PSEventLogEntry.Help.xml  
 function Get-EventLogEntry{
-  <#
-      .SYNOPSIS
-      To filter Powershell Logs, we need a wrapper to create a base search for logs and 
-     the filter with a proper error handling, paramer validation when we pass a set of server names.
-
-      .DESCRIPTION
-      This function filters the Event Log for the specified Servers, LogNames and EventIDS
-
-      .PARAMETER ServerName
-      Gets the EventLogs on the specified Server(s)
-
-      .PARAMETER LogName
-      Filters the EventLogs for the specified Logs. 
-
-      .PARAMETER EventID
-      Filters the EventLogs for the specified EventID.
-
-      .PARAMETER StartTime
-      Filters the requested EventLogs after the specified time.
-
-      .PARAMETER EndTime
-      Filters the requested EventLogs before the specified time.
-
-      .EXAMPLE
-      Get-EventLogEntry -ServerName "Server1" -LogName "System" -EventID 7036 -StartTime (Get-Date).AddMinutes(-5) -EndTime (Get-Date)
-      Returns the System logs on the server Server1 with EventID 7036 in the last 5 minutes. 
-
-      .NOTES
-      This is a wrapper funtion to Get-WinEvent and to its FilterHashTable parameter. It does not (yet) provide a better way to handle event logs.
-
-
-      .INPUTS
-      string arrays, date time, 
-
-      .OUTPUTS
-      System.Diagnostics.Eventing.Reader.EventLogRecord
-  #>
-
-
+  
     param(
         [Parameter(Mandatory, HelpMessage='Gets the Log Entries from the specified server(s)',
         ValueFromPipeline,
