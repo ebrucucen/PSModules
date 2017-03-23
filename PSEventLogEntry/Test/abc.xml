@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="3" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2017-03-23" time="12:42:06">
+  <environment user="demokritos" machine-name="VESTASOFTDC" cwd="C:\gitrepo\github.com\PSModules\PSEventLogEntry\Test" user-domain="VESTASOFT" platform="Microsoft Windows Server 2012 R2 Standard|C:\Windows|\Device\Harddisk0\Partition4" nunit-version="2.5.8.0" os-version="6.3.9600" clr-version="4.0.30319.42000" />
+  <culture-info current-culture="en-GB" current-uiculture="en-US" />
+  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="5.6762" asserts="0" description="Pester">
+    <results>
+      <test-suite type="TestFixture" name="c:\gitrepo\github.com\PSModules\Pseventlogentry\Test\PSEventLogEntry.Tests.ps1" executed="True" result="Success" success="True" time="5.6762" asserts="0" description="c:\gitrepo\github.com\PSModules\Pseventlogentry\Test\PSEventLogEntry.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-EventLogEntry Function Basic Tests" executed="True" result="Success" success="True" time="5.6762" asserts="0" description="Get-EventLogEntry Function Basic Tests">
+            <results>
+              <test-suite type="TestFixture" name="Invalid Parameter Set" executed="True" result="Success" success="True" time="5.4061" asserts="0" description="Invalid Parameter Set">
+                <results>
+                  <test-case description="Should Throw Error for invalid ServerName" name="Get-EventLogEntry Function Basic Tests.Invalid Parameter Set.Should Throw Error for invalid ServerName" time="2.9837" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should Throw Error for invalid LogName" name="Get-EventLogEntry Function Basic Tests.Invalid Parameter Set.Should Throw Error for invalid LogName" time="2.4224" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="Valid Parameter Set" executed="True" result="Success" success="True" time="0.2701" asserts="0" description="Valid Parameter Set">
+                <results>
+                  <test-case description="Should Not Throw An Error for the Valid Logname, Start/End Time inputs" name="Get-EventLogEntry Function Basic Tests.Valid Parameter Set.Should Not Throw An Error for the Valid Logname, Start/End Time inputs" time="0.2701" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

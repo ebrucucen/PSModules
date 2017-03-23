@@ -7,12 +7,16 @@
         $ProjectRoot = $PSScriptRoot 
     } 
 
+    $TestLocation= Join-Path -Path $ProjectRoot "PSEventLogEntry\Test"
+    $timestamp= Get-date -format "ddMM_hhmmss"
+
 #Init Task
 task Init {
     $lines
     Set-location $ProjectRoot
     "Build System Details: "
     Get-Item ENV:BH* | Format-List
+    "`n"
     $lines
 
     Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
@@ -25,9 +29,6 @@ task Init {
             install-module -Name $module -Force
         }
     }
- #   Install-Module InvokeBuild , PSDeploy, BuildHelpers -force
- #   Install-Module Pester -Force
- #   Import-Module InvokeBuild, BuildHelpers
 }
 
 #Build Task
@@ -58,15 +59,24 @@ task Clean{
 
 }
 
-#Test Task
+#Test Task 
 task Test{
     $lines 
     'TDD: Tests first! ' 
-    $TestResults = Invoke-Pester -Path $ProjectRoot\PSEventLogEntry\Test\*tests* -PassThru -Tag Build  
-      
-    if($TestResults.FailedCount -gt 0) 
+    Set-Location $TestLocation
+    $TestFiles= Get-ChildItem -Path $TestLocation -Filter "*.Tests.*"
+    foreach ($testFile in $testFiles){
+        $testOutputFileName= Join-path -path $testfile.fullname "$($testfile.basename)_$timestamp.xml"
+        $testResult=Invoke-Pester -Script $testFile.Fullname  -OutputFile "abc.xml" -OutputFormat NUnitXml
+    }
+    New-Object -TypeName PSObject -Property @{
+        Passed = $testResult.PassedCount
+        Failed = $testResult.FailedCount
+    }
+
+    if($testResult.FailedCount -gt 0) 
     { 
-         Write-Error "Failed '$($TestResults.FailedCount)' tests, build failed" 
+         Write-Error "Failed '$($testResult.FailedCount)' tests, build failed" 
     } 
     $lines 
 }
