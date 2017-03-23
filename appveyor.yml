@@ -1,5 +1,8 @@
+environment: 
+ NugetApiKey:
+  secure: 9d4b47bd-2111-4ed2-8c66-9cf4d0712a18
 
-build: off
+build: false
 
 #Kick off the CI/CD pipeline
 before_test: 
