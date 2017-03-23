@@ -6,6 +6,7 @@
     { 
         $ProjectRoot = $PSScriptRoot 
     } 
+    $Verbose = @{Verbose = $True}
 
     $TestLocation= Join-Path -Path $ProjectRoot "PSEventLogEntry\Test"
     $timestamp= Get-date -format "ddMM_hhmmss"
@@ -93,7 +94,14 @@ task Test{
     $lines 
 }
 task Package {
-    Nuget 
+    
+    $Params = @{ 
+             Path = $ProjectRoot 
+             Force = $true 
+         } 
+ 
+         Invoke-PSDeploy @Verbose @Params 
+ 
 }
 #Version Task
 task Version {
