@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/github/psmodules/randomuser?svg=true)](https://ci.appveyor.com/api/projects/status/github/psmodules/)
+[[![Build status](https://ci.appveyor.com/api/projects/status/jcl57u26ry6li0xt?svg=true)](https://ci.appveyor.com/project/ebrucucen/psmodules)
 
 
 # PSModules
