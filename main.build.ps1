@@ -3,7 +3,7 @@ task Init {
     Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
 
     Install-Module InvokeBuild , PSDeploy, BuildHelpers -force
-    Install-Module Pester -Force -SkipPublisherCheck
+    Install-Module Pester -Force
     Import-Module InvokeBuild, BuildHelpers
 }
 
