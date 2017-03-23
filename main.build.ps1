@@ -1,6 +1,6 @@
 
 #Script properties: 
-    $lines = '`n----------------------------------------------------------------------'
+    $lines = '----------------------------------------------------------------------'
     $ProjectRoot = $ENV:BHProjectPath 
     if(! $ProjectRoot) 
     { 
@@ -62,13 +62,13 @@ task Clean{
 task Test{
     $lines 
     'TDD: Tests first! ' 
-    $TestResults = Invoke-Pester -Path $ProjectRoot\Test\*tests* -PassThru -Tag Build  
+    $TestResults = Invoke-Pester -Path $ProjectRoot\PSEventLogEntry\Test\*tests* -PassThru -Tag Build  
       
     if($TestResults.FailedCount -gt 0) 
     { 
          Write-Error "Failed '$($TestResults.FailedCount)' tests, build failed" 
     } 
-    "`n" 
+    $lines 
 }
 
 #Version Task
