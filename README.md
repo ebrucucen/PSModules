@@ -1,4 +1,4 @@
-(https://ci.appveyor.com/project/RamblingCookieMonster/psstackexchange/branch/master)
+[![Build status](https://ci.appveyor.com/project/RamblingCookieMonster/psstackexchange/branch/master)
 
 
 # PSModules
