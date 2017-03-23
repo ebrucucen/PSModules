@@ -4,9 +4,9 @@
     Describe  -Name 'Get-EventLogEntry Function Basic Tests' -Tags 'Basic,Get-EventLogEntry' -Fixture {
       BeforeAll {
         #Make sure PSEventLogEntry is installed
-        if(!(Get-Module -Name $ModuleName -ListAvailable)){
-            Throw "PSEventLogEntry is not on PSModulePath "
-        }
+        #if(!(Get-Module -Name $ModuleName -ListAvailable)){
+        #    Throw "PSEventLogEntry is not on PSModulePath "
+        #}
         Import-Module -Name $ModuleName
         $testEventLog=Get-WinEvent -LogName 'Application' -MaxEvents 1
         #Use the log we know exists on the test machine:
