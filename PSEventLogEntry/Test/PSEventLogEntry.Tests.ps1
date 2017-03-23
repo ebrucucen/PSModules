@@ -4,7 +4,7 @@
     Describe  -Name 'Get-EventLogEntry Function Basic Tests' -Tags 'Basic,Get-EventLogEntry' -Fixture {
       BeforeAll {
         #Make sure PSEventLogEntry is installed
-        if($null -eq (Get-Module -Name $ModuleName -ListAvailable)){
+        if(!(Get-Module -Name $ModuleName -ListAvailable)){
             Throw "PSEventLogEntry is not on PSModulePath "
         }
         Import-Module -Name $ModuleName
