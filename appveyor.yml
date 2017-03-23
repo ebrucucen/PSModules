@@ -12,4 +12,4 @@ before_test:
  - ps: import-module invokebuild
  - echo "imported"
 test_script:
-  - ps: . .\main.build.ps1
+  - ps: invoke-build
