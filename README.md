@@ -7,15 +7,15 @@ This is the basic module set to get samples of how powershell modules can be imp
 
 Sample is PSEventLogEntry module with a structure: 
 
-__ appveyor.yml
-__ deploy.PSDeploy.ps1
-__ main.build.ps1
-__ PSEventLogEntry.nuspec
-__ README.md
-__ PSEventLogEntry
-   ____ en-US
-   ____ Public
-   ____ Private
-   ____ Test
+  appveyor.yml
+  deploy.PSDeploy.ps1
+  main.build.ps1
+  PSEventLogEntry.nuspec
+  README.md
+  PSEventLogEntry
+    en-US
+    Public
+    Private
+    Test
    PSEventLogEntry.psd1
    PSEventLogEntry.psm1
