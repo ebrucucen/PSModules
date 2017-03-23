@@ -4,12 +4,6 @@ environment:
 
 build: false
 
-deploy:
-  provider: NuGet
-#  server:                  # remove to push to NuGet.org
-  api_key:
-    secure: NRWm0YF36oHb1apjZ6BDPOm9Ieyq5h34yuuNjA5Mr606mvmcSYWCjXh54beHt+pl
-#encrypted...
 
 #Kick off the CI/CD pipeline
 before_test: 
