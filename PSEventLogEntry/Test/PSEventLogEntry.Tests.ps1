@@ -7,7 +7,7 @@
         #if(!(Get-Module -Name $ModuleName -ListAvailable)){
         #    Throw "PSEventLogEntry is not on PSModulePath "
         #}
-        Import-Module -Name $ModuleName
+        Import-Module "$PSSCriptRoot\..\PSEventLogEntry.psm1"
         $testEventLog=Get-WinEvent -LogName 'Application' -MaxEvents 1
         #Use the log we know exists on the test machine:
         if(!($null -eq $testEventLog)) {
