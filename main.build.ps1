@@ -9,13 +9,14 @@
 
     $TestLocation= Join-Path -Path $ProjectRoot "PSEventLogEntry\Test"
     $timestamp= Get-date -format "ddMM_hhmmss"
+    $ModuleName="PSEventlogEntry"
 
 #Init Task
 task Init {
     $lines
     Set-location $ProjectRoot
     "Build System Details: "
-    Get-Item ENV:BH* | Format-List
+    Get-Item "ENV:BH*" | Format-List
     "`n"
     $lines
 
@@ -31,10 +32,10 @@ task Init {
     }
 }
 
-#Build Task
-task Build {
+#PreTest Task
+task PreTest {
     $buildModulePath= Get-item (Join-Path -Path $PSScriptRoot "PSEventlogEntry\PSEventlogEntry.psm1" ) 
-    if (!(Get-Module -Name "PSEventlogEntry")) {
+    if (!(Get-Module -Name $ModuleName)) {
         #pick the first module path copy the content , install the module...
         $buildModulePathExp=$buildModulePath.Directory.Tostring().replace("\", "\\")
         $p = [Environment]::GetEnvironmentVariable("PSModulePath")
@@ -47,6 +48,12 @@ task Build {
         try{    
             Write-Output $buildModulePath
             Import-module ($buildModulePath.Directory)
+            if (Get-command -Module $ModuleName){
+                write-output "Sucess import"
+            }
+            else {
+                write-output "Failed import"
+            }
         }
         catch {
             throw "weeorr"
@@ -63,6 +70,16 @@ task Clean{
 task Test{
     $lines 
     'TDD: Tests first! ' 
+
+    #fail if can't find the imported module : 
+     if (Get-command -Module $ModuleName){
+        write-output "Sucess import"
+    }
+    else {
+        write-output "Failed import"
+        break
+    }
+    #        
     Set-Location $TestLocation
     $TestFiles= Get-ChildItem -Path $TestLocation -Filter "*.Tests.*"
     foreach ($testFile in $testFiles){
@@ -101,4 +118,4 @@ task Version {
   }|Set-content $path
   
 }
-task . Init,Build, Test 
+task . Init, PreTest, Test 
