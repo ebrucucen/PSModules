@@ -78,7 +78,7 @@ task Test{
     #Set-Location $TestLocation
     $TestFiles= Get-ChildItem -Path $TestLocation -Filter "*.Tests.*"
     foreach ($testFile in $testFiles){
-        $testOutputFileName= Join-path -path $testfile.fullname "$($testfile.basename)_$timestamp.xml"
+        $testOutputFileName= Join-path -path $testfile.Directory -ChildPath "$($testfile.basename)_$timestamp.xml"
         $testResult=Invoke-Pester -Script $testFile.Fullname  -OutputFile "abc.xml" -OutputFormat NUnitXml
     }
     New-Object -TypeName PSObject -Property @{
