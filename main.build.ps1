@@ -1,10 +1,33 @@
-task Init {
-    
-    Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
+Properties{
+    $lines = '`n----------------------------------------------------------------------'
+    $ProjectRoot = $ENV:BHProjectPath 
+    if(! $ProjectRoot) 
+    { 
+        $ProjectRoot = $PSScriptRoot 
+    } 
 
-    Install-Module InvokeBuild , PSDeploy, BuildHelpers -force
-    Install-Module Pester -Force
-    Import-Module InvokeBuild, BuildHelpers
+}
+
+task Init {
+    $lines
+    Set-location $ProjectRoot
+    "Build System Details: "
+    Get-Item ENV:BH* | Format-List
+    $lines
+
+    Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
+    $ModuleList= @("InvokeBuild","PSDeploy", "BuildHelpers", "Pester")
+    Foreach ($module in $ModuleList){
+        if (Get-module -name $module -ListAvailable) {
+            #skip
+        }
+        else{
+            install-module -Name $module -Force
+        }
+    }
+ #   Install-Module InvokeBuild , PSDeploy, BuildHelpers -force
+ #   Install-Module Pester -Force
+ #   Import-Module InvokeBuild, BuildHelpers
 }
 
 task Build {
@@ -34,7 +57,15 @@ task Clean{
 }
 
 task Test{
-    Pester\Invoke-Pester 
+    $lines 
+    'TDD: Tests first! ' 
+    $TestResults = Invoke-Pester -Path $ProjectRoot\Test\*tests* -PassThru -Tag Build  
+      
+    if($TestResults.FailedCount -gt 0) 
+    { 
+         Write-Error "Failed '$($TestResults.FailedCount)' tests, build failed" 
+    } 
+    "`n" 
 }
 task Version {
     $path=".\PSEventLogEntry\PSEventLogEntry.1.psd1"
@@ -55,4 +86,4 @@ task Version {
   }|Set-content $path
   
 }
-task . Init,Build 
+task . Init,Build, Test 
