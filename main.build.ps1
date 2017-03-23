@@ -1,4 +1,5 @@
-Properties{
+
+#Script properties: 
     $lines = '`n----------------------------------------------------------------------'
     $ProjectRoot = $ENV:BHProjectPath 
     if(! $ProjectRoot) 
@@ -6,8 +7,7 @@ Properties{
         $ProjectRoot = $PSScriptRoot 
     } 
 
-}
-
+#Init Task
 task Init {
     $lines
     Set-location $ProjectRoot
@@ -30,6 +30,7 @@ task Init {
  #   Import-Module InvokeBuild, BuildHelpers
 }
 
+#Build Task
 task Build {
     $buildModulePath= Get-item (Join-Path -Path $PSScriptRoot "PSEventlogEntry\PSEventlogEntry.psm1" ) 
     if (!(Get-Module -Name "PSEventlogEntry")) {
@@ -52,10 +53,12 @@ task Build {
     
 }
 
+#Clean Task
 task Clean{
 
 }
 
+#Test Task
 task Test{
     $lines 
     'TDD: Tests first! ' 
@@ -67,6 +70,8 @@ task Test{
     } 
     "`n" 
 }
+
+#Version Task
 task Version {
     $path=".\PSEventLogEntry\PSEventLogEntry.1.psd1"
     [regex]$rx="ModuleVersion\s=\s'(?<majorversion>\d).(?<minversion>\d).(?<buildversion>\d).(?<revisionversion>\d)'"
