@@ -1,6 +1,6 @@
 environment: 
  NugetApiKey:
-  secure: 9d4b47bd-2111-4ed2-8c66-9cf4d0712a18
+  secure: NRWm0YF36oHb1apjZ6BDPOm9Ieyq5h34yuuNjA5Mr606mvmcSYWCjXh54beHt+pl
 
 build: false
 
@@ -8,7 +8,8 @@ deploy:
   provider: NuGet
 #  server:                  # remove to push to NuGet.org
   api_key:
-    secure: 9d4b47bd-2111-4ed2-8c66-9cf4d0712a18
+    secure: NRWm0YF36oHb1apjZ6BDPOm9Ieyq5h34yuuNjA5Mr606mvmcSYWCjXh54beHt+pl
+#encrypted...
 
 #Kick off the CI/CD pipeline
 before_test: 

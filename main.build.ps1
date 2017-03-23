@@ -29,7 +29,11 @@ task Init {
         else{
             install-module -Name $module -Force
         }
+        Import-Module -Name $module 
     }
+    
+    Set-BuildEnvironment
+
 }
 
 #PreTest Task
