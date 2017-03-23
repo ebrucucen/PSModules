@@ -71,16 +71,7 @@ task Test{
     $lines 
     'TDD: Tests first! ' 
 
-    #fail if can't find the imported module : 
-     if (Get-command -Module $ModuleName){
-        write-output "Sucess import"
-    }
-    else {
-        write-output "Failed import"
-        break
-    }
-    #        
-    Set-Location $TestLocation
+    #Set-Location $TestLocation
     $TestFiles= Get-ChildItem -Path $TestLocation -Filter "*.Tests.*"
     foreach ($testFile in $testFiles){
         $testOutputFileName= Join-path -path $testfile.fullname "$($testfile.basename)_$timestamp.xml"
@@ -90,14 +81,16 @@ task Test{
         Passed = $testResult.PassedCount
         Failed = $testResult.FailedCount
     }
-
+    (New-Object 'System.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path $testOutputFileName))
     if($testResult.FailedCount -gt 0) 
     { 
          Write-Error "Failed '$($testResult.FailedCount)' tests, build failed" 
     } 
     $lines 
 }
-
+task Package {
+    Nuget 
+}
 #Version Task
 task Version {
     $path=".\PSEventLogEntry\PSEventLogEntry.1.psd1"

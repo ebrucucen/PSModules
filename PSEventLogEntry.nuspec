@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>PSEventLogEntry</id>
+    <version>$version$</version>
+    <title>PS Event Log Cmdlets</title>
+    <summary>A set of tools to filter the Event Logs for Powershell Logging for multiple machines.</summary>
+    <description>This module helps to easily filter the logs when Powershell Module logging is enabled.</description>
+    <tags>powershell eventlog tdd modulelogging</tags>
+    <authors>Ebru Cucen</authors>
+    <projectUrl>https://github.com/ebrucucen/PSModules</projectUrl>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
+    <copyright>(c) 2017 EbruCucen</copyright>
+  </metadata>
+  <files>
+    <file src="PSEventLogEntry.psm1" target="" />
+    <file src="PSEventLogEntry.psd1" target="" />
+    <file src="PSEventLogEntry\**\*.*" target="Cmdlets" />
+  </files>
+</package>
