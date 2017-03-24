@@ -76,21 +76,20 @@ task Test{
     $lines 
     'TDD: Tests first! ' 
 
-    #Set-Location $TestLocation
+    #SGet the test files: 
     $TestFiles= Get-ChildItem -Path $TestLocation -Filter "*.Tests.*"
     foreach ($testFile in $testFiles){
         $testOutputFileName= Join-path -path $testfile.Directory -ChildPath "$($testfile.basename)_$timestamp.xml"
         $testResult=Invoke-Pester -Script $testFile.Fullname  -OutputFile $testOutputFileName -OutputFormat NUnitXml
     }
-    New-Object -TypeName PSObject -Property @{
-        Passed = $testResult.PassedCount
-        Failed = $testResult.FailedCount
-    }
+   
+    #upload for Appveyor
     (New-Object 'System.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path $testOutputFileName))
     if($testResult.FailedCount -gt 0) 
     { 
          Write-Error "Failed '$($testResult.FailedCount)' tests, build failed" 
     } 
+
     $lines 
 }
 task Package {

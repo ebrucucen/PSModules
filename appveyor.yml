@@ -4,7 +4,7 @@
 # all the options are here: https://www.appveyor.com/docs/appveyor-yml/
 
 # we want disable the MSBuild
-build: else
+build: off
 
 #Kick off the CI/CD pipeline
 before_build: 
@@ -18,7 +18,6 @@ before_build:
 build_script:
   - ps: invoke-build
 
-test: else
 
 environment: 
  NugetApiKey:
