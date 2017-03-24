@@ -80,7 +80,7 @@ task Test{
     $TestFiles= Get-ChildItem -Path $TestLocation -Filter "*.Tests.*"
     foreach ($testFile in $testFiles){
         $testOutputFileName= Join-path -path $testfile.Directory -ChildPath "$($testfile.basename)_$timestamp.xml"
-        $testResult=Invoke-Pest -Script $testFile.Fullname  -OutputFile $testOutputFileName -OutputFormat NUnitXml
+        $testResult=Invoke-Pester -Script $testFile.Fullname  -OutputFile $testOutputFileName -OutputFormat NUnitXml
     }
     New-Object -TypeName PSObject -Property @{
         Passed = $testResult.PassedCount
