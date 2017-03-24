@@ -5,6 +5,8 @@
 
 This is the basic module set to get samples of how powershell modules can be implemented.
 
+Edition 
+
 Sample is PSEventLogEntry module with a structure: 
 
   appveyor.yml <br />
