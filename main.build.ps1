@@ -16,9 +16,10 @@
 task Init {
     $lines
     Set-location $ProjectRoot
-
+    
+    # we need to install/import psdeploy, buildhelper and pester modules: 
     Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
-    $ModuleList= @("InvokeBuild","PSDeploy", "BuildHelpers", "Pester")
+    $ModuleList= @("PSDeploy", "BuildHelpers", "Pester")
     Foreach ($module in $ModuleList){
         if (Get-module -name $module -ListAvailable) {
             #skip
@@ -31,12 +32,10 @@ task Init {
     
     Set-BuildEnvironment
     
-    $lines
     "Build System Details: "
     Get-Item "ENV:BH*" | Format-List
     "`n"
     $lines
-
 }
 
 #PreTest Task
