@@ -16,10 +16,6 @@
 task Init {
     $lines
     Set-location $ProjectRoot
-    "Build System Details: "
-    Get-Item "ENV:BH*" | Format-List
-    "`n"
-    $lines
 
     Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
     $ModuleList= @("InvokeBuild","PSDeploy", "BuildHelpers", "Pester")
@@ -34,11 +30,18 @@ task Init {
     }
     
     Set-BuildEnvironment
+    
+    $lines
+    "Build System Details: "
+    Get-Item "ENV:BH*" | Format-List
+    "`n"
+    $lines
 
 }
 
 #PreTest Task
 task PreTest {
+    $lines 
     $buildModulePath= Get-item (Join-Path -Path $PSScriptRoot "PSEventlogEntry\PSEventlogEntry.psm1" ) 
     if (!(Get-Module -Name $ModuleName)) {
         #pick the first module path copy the content , install the module...
@@ -63,12 +66,12 @@ task PreTest {
         catch {
             throw "weeorr"
         }
-    
+    $lines
 }
 
 #Clean Task
 task Clean{
-
+    #Todo : remove test files: 
 }
 
 #Test Task 
@@ -93,18 +96,20 @@ task Test{
 
     $lines 
 }
+#Packaging task 
 task Package {
-    
+    $lines
     $Params = @{ 
              Path = $ProjectRoot 
              Force = $true 
          } 
  
          Invoke-PSDeploy @Verbose @Params 
- 
+   $lines      
 }
 #Version Task
 task Version {
+    $lines
     $path=".\PSEventLogEntry\PSEventLogEntry.1.psd1"
     [regex]$rx="ModuleVersion\s=\s'(?<majorversion>\d).(?<minversion>\d).(?<buildversion>\d).(?<revisionversion>\d)'"
     (Get-Content $path )|ForEach-Object {
@@ -121,6 +126,6 @@ task Version {
       $_
     }
   }|Set-content $path
-  
+  $lines  
 }
 task . Init, PreTest, Test 
