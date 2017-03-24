@@ -1,7 +1,7 @@
 
-environment: 
- NugetApiKey:
-  secure: NRWm0YF36oHb1apjZ6BDPOm9Ieyq5h34yuuNjA5Mr606mvmcSYWCjXh54beHt+pl
+# This is appveyor yml configuration to tell
+# what to do for each logical build/deployment phase: 
+# all the options are here: https://www.appveyor.com/docs/appveyor-yml/
 
 # we want disable the MSBuild
 build: false
@@ -17,3 +17,12 @@ before_build:
 #define the build script instead of automated MSBuild 
 build_script:
   - ps: invoke-build
+
+
+
+environment: 
+ NugetApiKey:
+  secure: NRWm0YF36oHb1apjZ6BDPOm9Ieyq5h34yuuNjA5Mr606mvmcSYWCjXh54beHt+pl
+
+
+
