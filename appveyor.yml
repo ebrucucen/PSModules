@@ -17,12 +17,3 @@ before_build:
 #define the build script instead of automated MSBuild 
 build_script:
   - ps: invoke-build
-
-
-
-
-
-
-
-
-
