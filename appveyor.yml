@@ -1,16 +1,28 @@
+
 environment: 
  NugetApiKey:
   secure: NRWm0YF36oHb1apjZ6BDPOm9Ieyq5h34yuuNjA5Mr606mvmcSYWCjXh54beHt+pl
 
+# we want disable the MSBuild
 build: false
 
-
 #Kick off the CI/CD pipeline
-before_test: 
+before_build: 
  - echo "started"
  - ps: install-module invokebuild
  - echo "installed"
  - ps: import-module invokebuild
  - echo "imported"
-test_script:
+
+#define the build script instead of automated MSBuild 
+build_script:
   - ps: invoke-build
+
+
+
+
+
+
+
+
+
